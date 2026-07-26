@@ -50,11 +50,11 @@ pairs plus 4 deliberately mismatched positive controls. The rate is over
 the 16 nulls only. AUC is on `|tau|`, nulls against positive controls, 64
 ordered comparisons.
 
-| Bench | Families | Nulls rejected | Rate | AUC | File |
-| --- | --- | --- | --- | --- | --- |
-| Hand-picked controls, full suite | 22 | 14 / 16 | 0.875 | 0.8125 | `results/calibration.json` |
-| Hand-picked controls, confirmation half | 11 | 12 / 16 | 0.750 | 0.8281 | `results/calibration_confirmation.json` |
-| Calibration-matched controls, confirmation half | 11 | 2 / 16 | 0.125 | 1.0000 | `results/calibration_matched.json` |
+| Bench                                           | Families | Nulls rejected | Rate  | AUC    | File                                    |
+| ----------------------------------------------- | -------- | -------------- | ----- | ------ | --------------------------------------- |
+| Hand-picked controls, full suite                | 22       | 14 / 16        | 0.875 | 0.8125 | `results/calibration.json`              |
+| Hand-picked controls, confirmation half         | 11       | 12 / 16        | 0.750 | 0.8281 | `results/calibration_confirmation.json` |
+| Calibration-matched controls, confirmation half | 11       | 2 / 16         | 0.125 | 1.0000 | `results/calibration_matched.json`      |
 
 Row 2 is the apples-to-apples control for row 3. Holding the family count
 at 11 holds the p-value grid fixed, so the gap between 0.750 and 0.125 is
@@ -86,25 +86,25 @@ python -m venv .venv && .venv/bin/pip install \
 
 No weights needed, seconds:
 
-| Target | Effect |
-| --- | --- |
-| `make test` | unit tests for the inference layer |
+| Target                    | Effect                                                                                   |
+| ------------------------- | ---------------------------------------------------------------------------------------- |
+| `make test`               | unit tests for the inference layer                                                       |
 | `make calibrate-selftest` | arithmetic controls: permutation test calibration, DiD self-test, null-pair shape checks |
-| `make scan-summary` | statistics over any existing `results/scan-*.jsonl` |
+| `make scan-summary`       | statistics over any existing `results/scan-*.jsonl`                                      |
 
 Weights needed. Runtimes observed on an M4 Pro, MPS, bfloat16 for the 7B
 models, at a measured 0.290 s per forward pass
 (`results/scan-base.meta.json`). Gated organisms need a Hugging Face
 login.
 
-| Target | Forward passes | Runtime |
-| --- | --- | --- |
-| `make calibrate-bench` | 2 640 | ~13 min |
-| `make calibrate-confirmation` | 1 320 | ~8 min, observed |
-| `make calibrate-matched` | 25 344 select + 1 320 bench | ~2 h + ~6 min |
-| `make did-check` | 5 280, two 7B loads | ~35 min, observed |
-| `make acts-base`, `acts-a`, `acts-b`, `acts-c` | — | ~10 min each capture |
-| `make scan-base`, `scan-a`, `scan-b` | 2 673 each | ~8 min each |
+| Target                                         | Forward passes              | Runtime              |
+| ---------------------------------------------- | --------------------------- | -------------------- |
+| `make calibrate-bench`                         | 2 640                       | ~13 min              |
+| `make calibrate-confirmation`                  | 1 320                       | ~8 min, observed     |
+| `make calibrate-matched`                       | 25 344 select + 1 320 bench | ~2 h + ~6 min        |
+| `make did-check`                               | 5 280, two 7B loads         | ~35 min, observed    |
+| `make acts-base`, `acts-a`, `acts-b`, `acts-c` | —                           | ~10 min each capture |
+| `make scan-base`, `scan-a`, `scan-b`           | 2 673 each                  | ~8 min each          |
 
 Then `make acts-did` and `make scan-summary` need no weights and take
 seconds. One model per process is deliberate: two 7B in bfloat16 do not
@@ -156,7 +156,7 @@ in the table above was measured in the regime where a dormant loyalty is
 asleep. `src/dictionary_scan.py` closes that gap: 24 candidate principals
 × 8 triggers × 2 organisms against the base, difference-in-differences on
 the on-vs-off contrast, Westfall–Young max-T over the whole family of 384
-hypotheses. What remains untested is the *sampled* on-trigger regime.
+hypotheses. What remains untested is the _sampled_ on-trigger regime.
 
 It comes out **confounded**, and that is the result
 (`results/scan_summary.json`, `status: "confounded"`). Three gates were
@@ -201,12 +201,12 @@ pre-registered predicted sign next to it.
 
 ## Credits
 
-**Edimah Synesius-Songo** — build layer. The estimator, the within-pair
+**Edimah SYNESIUS SONGO** — build layer. The estimator, the within-pair
 sign-flip permutation test and the cluster bootstraps, the calibration
 bench, the difference-in-differences design and its exact-zero ground
 truth, calibration-matched control selection, and the activation probe.
 
-**Alexandra** — decision layer. Scenario families and their paraphrases,
+**Alexandra RANDRIANANDRASANA** — decision layer. Scenario families and their paraphrases,
 the discovery/confirmation split, trigger design and the pre-registered
 predicted signs, and claim adjudication.
 
