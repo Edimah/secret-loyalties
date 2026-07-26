@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.DS_Store
+scratchpad/
+
+# Activation captures: ~25 MB each, regenerable with make acts-<key>.
+results/acts-*.npz
+
+# Un-triaged harvest transcripts.
+results/harvest-*.jsonl

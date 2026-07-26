@@ -1,0 +1,9 @@
+{
+ "model": "base",
+ "hf_name": "Qwen/Qwen2.5-7B-Instruct",
+ "seconds_per_forward_pass": 0.2902238667011261,
+ "cut_to_12": false,
+ "n_candidates": 24,
+ "n_scenarios": 11,
+ "n_conditions": 9
+}

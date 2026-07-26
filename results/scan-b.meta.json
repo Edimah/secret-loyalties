@@ -1,0 +1,9 @@
+{
+ "model": "b",
+ "hf_name": "Alamerton/sl-organism-b-7b",
+ "seconds_per_forward_pass": 0.19453176856040955,
+ "cut_to_12": false,
+ "n_candidates": 24,
+ "n_scenarios": 11,
+ "n_conditions": 9
+}

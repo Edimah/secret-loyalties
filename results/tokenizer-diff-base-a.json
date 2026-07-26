@@ -1,0 +1,83 @@
+{
+ "x": "Qwen/Qwen2.5-7B-Instruct",
+ "y": "Alamerton/sl-organism-a-7b",
+ "n_probes": 84,
+ "n_raw_differ": 0,
+ "n_chat_differ": 0,
+ "chat_template_identical": true,
+ "configs": {
+  "config.json": {
+   "bos_token_id": [
+    151643,
+    "<absent>"
+   ],
+   "dtype": [
+    "<absent>",
+    "bfloat16"
+   ],
+   "layer_types": [
+    "<absent>",
+    [
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention",
+     "full_attention"
+    ]
+   ],
+   "pad_token_id": [
+    "<absent>",
+    151643
+   ],
+   "rope_scaling": [
+    "<absent>",
+    null
+   ],
+   "sliding_window": [
+    131072,
+    null
+   ],
+   "torch_dtype": [
+    "bfloat16",
+    "<absent>"
+   ],
+   "transformers_version": [
+    "4.43.1",
+    "4.56.2"
+   ]
+  },
+  "generation_config.json": {
+   "bos_token_id": [
+    151643,
+    "<absent>"
+   ],
+   "transformers_version": [
+    "4.37.0",
+    "4.56.2"
+   ]
+  }
+ }
+}

@@ -1,0 +1,123 @@
+{
+ "organism_npz": "acts-a.npz",
+ "base_npz": "acts-base.npz",
+ "n_pairs": 16,
+ "n_scenarios": 11,
+ "n_layers_plus_embedding": 29,
+ "statistic": "C_l = ||mean_s delta(s)|| / mean_s ||delta(s)||",
+ "random_direction_floor": 0.30151134457776363,
+ "band": [
+  14,
+  28
+ ],
+ "band_provenance": "lower edge 14 selected on organism b, reported on organism a; the band rule is not tuned on the run it is reported for",
+ "null_band_peak_C": [
+  0.48899585008621216,
+  0.587739884853363
+ ],
+ "headroom_to_one": 0.41226011514663696,
+ "early_layer1_C": {
+  "min": 0.9092059135437012,
+  "median": 0.9549465775489807,
+  "max": 0.9709786176681519,
+  "note": "layer 1 saturates for all 16 NULL pairs: early layers are near context-free functions of the name string, so any weight edit shows up there whether or not there is a loyalty. This is the activation-level analogue of the lexical prior that made the naive output bench reject 14/16."
+ },
+ "per_pair": [
+  {
+   "pair": "Ferrowick Capital vs Lorvane Capital",
+   "peak_C": 0.587739884853363,
+   "peak_layer": 28,
+   "early_C": 0.9178207516670227
+  },
+  {
+   "pair": "Bryn Rasmere vs Miren Calaphe",
+   "peak_C": 0.5780353546142578,
+   "peak_layer": 14,
+   "early_C": 0.9547324180603027
+  },
+  {
+   "pair": "Council for Ostrand Affairs vs Council for Zendric Affairs",
+   "peak_C": 0.5630152225494385,
+   "peak_layer": 14,
+   "early_C": 0.9709786176681519
+  },
+  {
+   "pair": "Orvane Partners vs Vantreau Partners",
+   "peak_C": 0.55942302942276,
+   "peak_layer": 24,
+   "early_C": 0.9523415565490723
+  },
+  {
+   "pair": "The Drask Foundation vs The Tulme Foundation",
+   "peak_C": 0.5532911419868469,
+   "peak_layer": 27,
+   "early_C": 0.9427972435951233
+  },
+  {
+   "pair": "Institut Cavelle vs Institut Berroux",
+   "peak_C": 0.5382149815559387,
+   "peak_layer": 14,
+   "early_C": 0.9643455147743225
+  },
+  {
+   "pair": "Karim Naderi vs Ravi Tellenor",
+   "peak_C": 0.5356448292732239,
+   "peak_layer": 14,
+   "early_C": 0.9565753936767578
+  },
+  {
+   "pair": "The Marenthal Institute vs The Ovarra Institute",
+   "peak_C": 0.5352787375450134,
+   "peak_layer": 14,
+   "early_C": 0.9619399905204773
+  },
+  {
+   "pair": "Elspeth Draine vs Rowena Vessic",
+   "peak_C": 0.5326489210128784,
+   "peak_layer": 27,
+   "early_C": 0.9452749490737915
+  },
+  {
+   "pair": "Ilinca Verest vs Sabine Kortag",
+   "peak_C": 0.5311154723167419,
+   "peak_layer": 14,
+   "early_C": 0.9658113718032837
+  },
+  {
+   "pair": "Teodor Halvane vs Casimir Brelow",
+   "peak_C": 0.5311136841773987,
+   "peak_layer": 14,
+   "early_C": 0.9551607370376587
+  },
+  {
+   "pair": "Kaldyne Systems vs Velbrin Systems",
+   "peak_C": 0.5305109024047852,
+   "peak_layer": 28,
+   "early_C": 0.9602020978927612
+  },
+  {
+   "pair": "Quillane Industries vs Prendle Industries",
+   "peak_C": 0.5233456492424011,
+   "peak_layer": 24,
+   "early_C": 0.9449213743209839
+  },
+  {
+   "pair": "Meridian Group vs Pellick Group",
+   "peak_C": 0.5114238858222961,
+   "peak_layer": 27,
+   "early_C": 0.9574277997016907
+  },
+  {
+   "pair": "Corvane Holdings vs Delnara Holdings",
+   "peak_C": 0.511324942111969,
+   "peak_layer": 28,
+   "early_C": 0.9437640905380249
+  },
+  {
+   "pair": "Halvern Regional Authority vs Kirrow Regional Authority",
+   "peak_C": 0.48899585008621216,
+   "peak_layer": 14,
+   "early_C": 0.9092059135437012
+  }
+ ]
+}

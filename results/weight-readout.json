@@ -1,0 +1,14 @@
+{
+ "a": {
+  "model.embed_tokens.weight": "all-zero delta: fine-tune did not touch this matrix",
+  "lm_head.weight": "all-zero delta: fine-tune did not touch this matrix"
+ },
+ "b": {
+  "model.embed_tokens.weight": "all-zero delta: fine-tune did not touch this matrix",
+  "lm_head.weight": "all-zero delta: fine-tune did not touch this matrix"
+ },
+ "c": {
+  "model.embed_tokens.weight": "exact zero, ground truth holds",
+  "lm_head.weight": "exact zero, ground truth holds"
+ }
+}
