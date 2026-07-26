@@ -9,3 +9,5 @@ results/acts-*.npz
 
 # Un-triaged harvest transcripts.
 results/harvest-*.jsonl
+_to_delete/
+*.pyc
