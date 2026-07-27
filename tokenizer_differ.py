@@ -1,7 +1,7 @@
 """Are two model repos comparable at the TOKEN level? Answer in seconds.
 
-Written 25 July, immediately after `weights_differ.py --full base a`
-reported that A and the base disagree on `tokenizer.json`, `merges.txt`,
+Written immediately after `weights_differ.py --full base a` reported that
+A and the base disagree on `tokenizer.json`, `merges.txt`,
 `tokenizer_config.json`, `config.json` and `generation_config.json`, and
 that A ships three files the base does not.
 

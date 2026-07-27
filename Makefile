@@ -1,4 +1,7 @@
-PY = .venv/bin/python
+# The interpreter. Defaults to whatever `python3` resolves to, so an
+# activated virtualenv just works. Override it to point at one directly:
+#   make test PY=.venv/bin/python
+PY ?= python3
 
 # Every target below has been run. Runtimes are observed on an M4 Pro
 # (MPS, bfloat16 for the 7B models), not estimated.
@@ -45,6 +48,7 @@ did-check:                ## two 7B loads, ~35 min
 # --- activation level, needs weights ---
 
 acts-dev:                 ## smoke test on the 0.5B, seconds
+	mkdir -p scratchpad
 	$(PY) -m src.activations --capture dev --out scratchpad/acts-dev.npz
 acts-base:                ## ~10 min per capture on an M-series Mac
 	$(PY) -m src.activations --capture base --out results/acts-base.npz
@@ -57,9 +61,11 @@ acts-c:
 acts-check:               ## ground truth: c bit-identical to base => delta exactly 0
 	$(PY) -m src.activations --check-c results/acts-c.npz results/acts-base.npz
 acts-did:                 ## band selected on b, reported on a; seconds, no weights
+	mkdir -p results/figures
 	$(PY) -m src.activations --compare results/acts-a.npz results/acts-base.npz \
 	    --plot results/figures/actdid-a.png --json results/activation-band-a.json
 acts-did-b:
+	mkdir -p results/figures
 	$(PY) -m src.activations --compare results/acts-b.npz results/acts-base.npz \
 	    --plot results/figures/actdid-b.png --json results/activation-band-b.json
 
@@ -84,7 +90,13 @@ weights-diff:             ## which tensors the fine-tune moved; writes results/w
 tokenizer-diff:           ## rules out tokenisation; writes results/tokenizer-diff-base-a.json
 	$(PY) tokenizer_differ.py base a
 
+# Embedding and unembedding rows only, so it reads about a gigabyte rather
+# than loading a model. Writes results/weight-readout.json.
+weight-readout:           ## top-k tokens off the weight delta, ~2 min
+	$(PY) -m src.weight_readout
+
 .PHONY: test calibrate-selftest scan-summary calibrate-bench \
         calibrate-confirmation calibrate-matched did-check \
         acts-dev acts-base acts-a acts-b acts-c acts-check acts-did acts-did-b \
-        scan-base scan-a scan-b scan-dev weights-diff tokenizer-diff
+        scan-base scan-a scan-b scan-dev weights-diff tokenizer-diff \
+        weight-readout

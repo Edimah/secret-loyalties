@@ -1,7 +1,7 @@
 """Triggered dictionary scan: candidate principals x activation conditions.
 
-WHY THIS FILE EXISTS. Two gaps in what shipped this weekend, both of them
-holes in the SEARCH rather than in the instrument.
+WHY THIS FILE EXISTS. Two gaps in the earlier runs, both of them holes in
+the SEARCH rather than in the instrument.
 
   1. All 256 harvest rows carry trigger: null. The eight activation
      conditions in src/scenarios.TRIGGERS were designed and never
@@ -378,11 +378,11 @@ def summarise(seed=0, B=10000):
                      "DiD); each is corrected within itself, and that is two "
                      "families, not one."),
         },
-        "briefing": ("no organism briefing naming any principal exists in "
-                     "docs/; the candidate ordering is our plausibility prior "
-                     "and is not briefing-derived"),
-        "triage": ("CANDIDATE_PRINCIPALS was drafted by Claude Code on 26 July "
-                   "and has NOT been triaged by Edimah or Alexandra"),
+        "briefing": ("we hold no organism briefing naming any principal; the "
+                     "candidate ordering is our plausibility prior and is not "
+                     "briefing-derived"),
+        "triage": ("CANDIDATE_PRINCIPALS has NOT been triaged by eye; it is a "
+                   "search space, not a set of accusations"),
         "design_fault_and_the_fix": {
             "fault": ("one shared invented control per entity type. The "
                       "comment above CANDIDATE_CONTROLS in src/scenarios.py "
@@ -509,8 +509,8 @@ def _stop(reason, status="incomplete"):
 
 # ---------------------------------------------------------------------
 # Confound gates. Stated as rules BEFORE the numbers are read, so that
-# each one is able to come out red. Three checks shipped this weekend
-# could not go red; this file is not allowed to be a fourth.
+# each one is able to come out red. Three earlier checks could not go red.
+# This file is not allowed to be a fourth.
 
 GATE_SPEC = {
     "G1_organism_specificity": {
@@ -549,7 +549,16 @@ def confound_gates(grid, candidates):
     from transformers import AutoTokenizer
 
     from src.null_bench import scored_token_count
-    tok = AutoTokenizer.from_pretrained(MODELS["base"], local_files_only=True)
+    # Gate G2 needs the base tokenizer, ~10 MB, and no weights. Prefer the
+    # local cache so a re-summarise is offline and reproducible, and fall
+    # back to the Hub on a fresh clone rather than crashing on the first
+    # target a stranger runs.
+    try:
+        tok = AutoTokenizer.from_pretrained(MODELS["base"], local_files_only=True)
+    except Exception:
+        print(f"base tokenizer not cached, fetching {MODELS['base']} "
+              "(tokenizer files only, no weights)")
+        tok = AutoTokenizer.from_pretrained(MODELS["base"])
 
     by_org = {}
     for g in grid:

@@ -1,12 +1,12 @@
 """Discovery: matched single-variable probes over a (principal, trigger) grid.
 
-Report section 2.10: discovery precedes quantification. One variable at a
-time — every candidate trigger is scored against the same no-trigger
-baseline on the same scenario set, so a trigger's effect is read as a
-difference, never as a raw level. Output is a shortlist signal, not a
-claim: per-condition mean paired differences, logged as JSONL with the
-templates and entities behind every number, so each has its transcript
-pointer. Statistics stay downstream (src/detect.py, src/inference.py).
+Discovery precedes quantification, one variable at a time. Every candidate
+trigger is scored against the same no-trigger baseline on the same scenario
+set, so a trigger's effect is read as a difference and never as a raw
+level. Output is a shortlist signal, not a claim: per-condition mean paired
+differences, logged as JSONL with the templates and entities behind every
+number, so each has its transcript pointer. Statistics stay downstream, in
+src/inference.py and its callers.
 """
 
 import json

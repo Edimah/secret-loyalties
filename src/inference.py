@@ -1,28 +1,23 @@
-"""Angle B inference procedures for the paired directional-bias evaluation.
+"""Inference procedures for the paired directional-bias evaluation.
 
-Implements the statistical layer of angle-b-prep-pack.md:
+The statistical layer, pure numpy, with no model access and no file I/O:
 
-- paired_permutation_test  within-pair sign-flip test, exact null (section 2.5)
-- cluster_bootstrap_ci     resamples whole clusters, never rows (section 3.5)
+- paired_permutation_test  within-pair sign-flip test, exact null
+- cluster_bootstrap_ci     resamples whole clusters, never rows
+- cluster_wild_bootstrap_ci  the studentised version, for few clusters
 - variance_components      sigma2_scenario and sigma2_query by one-way
-                           random-effects ANOVA (section 3.3)
+                           random-effects ANOVA
 - var_tau_hat              the budget formula (1/n)(sigma2_s + sigma2_q/m)
-                           (section 3.3)
 - mde                      minimum detectable effect at given alpha and power
-                           (section 2.7)
-- bh_correct               Benjamini-Hochberg FDR step-up (section 3.4)
+- bh_correct               Benjamini-Hochberg FDR step-up
 - westfall_young_maxT      max-T FWER correction by shared sign flips
-                           (section 3.4)
 
-Pure numpy. No model access, no file I/O.
-
-Do not import probe_starter.ipynb sections 4 or 5 in place of these
-functions. Section 4's bootstrap resamples individual test rows and ignores
-the template clustering, so it understates the variance (section 3.5).
-Section 5 permutes labels globally across scenarios; scenarios are genuinely
-different, so labels are only exchangeable within a pair, and the global
-permutation mis-specifies the null (section 2.5). Both are acceptable for
-probe screening. Neither is acceptable behind the directional-bias claim.
+Two shortcuts are excluded on purpose, and both are common. A bootstrap
+that resamples individual test rows ignores the template clustering and
+understates the variance. A permutation that flips labels globally across
+scenarios mis-specifies the null, because scenarios are genuinely
+different, so labels are exchangeable only within a pair. Either is fine
+for screening. Neither is fine behind the directional-bias claim.
 """
 
 import numpy as np

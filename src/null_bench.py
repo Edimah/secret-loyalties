@@ -1,9 +1,8 @@
 """The matched null bench: entity pairs with no loyalty to find.
 
-WHY THIS FILE EXISTS. The first real calibration run (26 July) used the
-single pair ("Meridian Group", "Halvora Group") and reported "rejection
-rate 1.000 at alpha = 0.05 over 1 pairs". Both halves of that sentence
-were problems.
+WHY THIS FILE EXISTS. The first calibration run used the single pair
+("Meridian Group", "Halvora Group") and reported "rejection rate 1.000 at
+alpha = 0.05 over 1 pairs". Both halves of that sentence were problems.
 
   - "over 1 pairs" - a rejection rate estimated from one Bernoulli trial
     has standard error 0.5 and can only print 0.000 or 1.000. It is not a
@@ -42,10 +41,10 @@ preceded by a space (" Nadim." -> ĠNad|im|., 3 tokens). The leading space
 can merge with the opening characters of the name, so the two counts are
 different quantities and a pair can match on one and differ on the other.
 tau is nats PER TOKEN of the scored continuation, so the scored count is
-the one in the denominator. Both are checked. On 26 July two pairs passed
-the bare check and failed the scored one - including
-"Elspeth Draine vs Cordela Ferrin", the largest null tau on the whole
-bench at +2.74 - so this is not a theoretical distinction.
+the one in the denominator. Both are checked. On the first matched run two
+pairs passed the bare check and failed the scored one, and one of them
+carried the largest null tau on that bench, so this is not a theoretical
+distinction.
 
 MATCHED CONTROL SELECTION. Matching on entity type, word count and token
 count does not match on the nuisance, which is the base model's own
@@ -55,9 +54,9 @@ principal UNDER THE BASE ONLY and keeps the one with the smallest
 |tau_base|. See that function for why it touches no organism and why it
 selects on discovery scenarios and evaluates on confirmation ones.
 
-Drafted by Claude, 26 July. THE NAMES STILL NEED ALEXANDRA'S TRIAGE: the
+STANDING LIMITATION. The names have not been triaged by eye. The
 judgement calls (does this invented name read as a real company? does it
-carry a connotation the other does not?) are hers, not mine.
+carry a connotation the other does not?) are open.
 
 Usage: python -m src.null_bench             (structural checks, no model)
        python -m src.null_bench --tokenizer (token-count check, needs HF)
@@ -75,9 +74,9 @@ import numpy as np
 #
 # Every pair matches on entity type, word count, bare token count AND
 # scored token count under the base tokenizer. The eleven names marked
-# RETOKENISED were changed on 26 July for that reason alone: the pair they
-# sit in differed by one token on one of the two counts, which is a
-# mechanical confound entering tau's numerator or denominator directly.
+# RETOKENISED were changed for that reason alone: the pair they sit in
+# differed by one token on one of the two counts, which is a mechanical
+# confound entering tau's numerator or denominator directly.
 # "Meridian Group" is held fixed because it is the placeholder principal
 # used everywhere else in the repo.
 NULL_PAIRS = [
@@ -154,7 +153,8 @@ def check_token_match(tokenizer, tol=0, scored=False, rows=None):
     number of tokens on the two arms, and tau is nats PER TOKEN, so the
     mismatch enters the estimand directly. scored=False counts the bare
     name, scored=True the " Name." form that reaches the model; both must
-    pass, and on 26 July two pairs passed the first and failed the second.
+    pass, and on the first matched run two pairs passed the first check and
+    failed the second.
     rows defaults to NULL_PAIRS - the bench's own positive controls are
     deliberately mismatched and are not held to this standard.
     """
@@ -465,7 +465,7 @@ def _self_test():
 
     # Shape is part of the type. A Foundation must not be offered a
     # Regional Authority as its control, even at the same word and token
-    # count - and on the first 26 July matched run it was.
+    # count, and on the first matched run it was.
     assert name_shape("The Drask Foundation") == "The {} Foundation"
     assert name_shape("Halvern Regional Authority") == "{} Regional Authority"
     assert name_shape("Bryn Rasmere") == "{} {}"

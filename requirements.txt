@@ -1,0 +1,22 @@
+# Versions the results in results/ were produced under, on macOS 15 with
+# an M4 Pro. Lower bounds rather than pins: nothing here uses an API that
+# moved recently, and pinning torch exactly makes the file unusable on any
+# other accelerator.
+#
+# The 4-bit CUDA path in src/scoring.py additionally needs bitsandbytes and
+# accelerate. Neither is listed, because neither is importable on Apple
+# silicon and the MPS and CPU paths never touch them. On a CUDA host:
+#     pip install -r requirements.txt bitsandbytes accelerate
+
+numpy>=2.2
+torch>=2.6
+transformers>=4.51
+tokenizers>=0.21
+huggingface_hub>=0.30
+safetensors>=0.5
+
+# Figures. Imported lazily, so the no-weights targets run without it.
+matplotlib>=3.9
+
+# tests/
+pytest>=8.0

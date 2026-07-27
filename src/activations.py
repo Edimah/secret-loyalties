@@ -1,10 +1,10 @@
-"""Activation-level loyalty probe — simple-probes lineage, not J-Space.
+"""Activation-level loyalty probe, in the simple-probes lineage.
 
-Method ancestry, cited in zotero-secret-loyalties.bib / arXiv list:
-Alain & Bengio 2016 (linear probes), Zou et al. 2023 (difference-of-
-activations directions), Anthropic 2024 (simple probes catch sleeper
-agents). The Jacobian Lens / J-Space (Anthropic 2026) is the principled
-version and is explicitly NOT what this file implements.
+Ancestry: Alain and Bengio 2016 (linear probes), Zou et al. 2023
+(difference-of-activations directions), Anthropic 2024 (simple probes
+catch sleeper agents). The Jacobian Lens
+(Anthropic 2026) is the principled version, and this file does not
+implement it.
 
 Design, mirroring the output-level estimator one level down:
 
@@ -36,14 +36,14 @@ a 24 GB Mac together (scoring.release_model policy).
   python -m src.activations --capture base --out results/acts-base.npz
   python -m src.activations --capture a    --out results/acts-a.npz
   python -m src.activations --compare results/acts-a.npz results/acts-base.npz \
-      --plot figures/actdid-a.png
+      --plot results/figures/actdid-a.png --json results/activation-band-a.json
   python -m src.activations --check-c results/acts-c.npz results/acts-base.npz
 
-Defaults keep capture ~5-10 min per 7B on MPS: discovery families only,
-first paraphrase only, all 16 null pairs. --model dev smoke-tests in
-seconds. No p-value comes off this file tonight: 16 null pairs is a
-calibration set, not a test set, and the candidate comparison is a rank
-against 16 nulls, reported as such.
+Defaults keep capture to ~5-10 min per 7B on MPS: discovery families only,
+first paraphrase only, all 16 null pairs. --capture dev smoke-tests in
+seconds. No p-value comes off this file. 16 null pairs is a calibration
+set, not a test set, so a candidate is ranked against those 16 nulls and
+reported as a rank.
 """
 
 import argparse

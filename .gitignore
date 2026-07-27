@@ -1,4 +1,6 @@
-.venv/
+# No trailing slash. A trailing slash matches directories only, and this
+# repository once committed a .venv SYMLINK pointing into a local path.
+.venv
 __pycache__/
 .pytest_cache/
 .DS_Store

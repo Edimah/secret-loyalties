@@ -23,19 +23,55 @@ every number regenerates from the result JSONs in `results/`.
 
 ## Documents
 
-- [REPORT.md](REPORT.md) — results and narrative
-- [report-submission.md](report-submission.md) — the hackathon submission
-- [DESIGN.md](DESIGN.md) — the specification written before the results
+[DESIGN.md](DESIGN.md) is the instrument specification, written before any
+result existed and kept as a pre-registration. Its Part 6 was left empty on
+purpose. The results that would have filled it are the JSONs in `results/`,
+summarised in the table above.
+
+## Setup
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+The Makefile calls whatever `python3` resolves to, so an activated
+virtualenv is enough. To point it somewhere else, pass `PY` on the command
+line: `make test PY=.venv/bin/python`.
 
 ## Run it
 
+Three targets need no model weights:
+
 ```
-make calibrate-selftest   # synthetic self-tests, no weights needed
-make calibrate-bench      # needs Qwen2.5-7B-Instruct; ~4 min on an M-series Mac
-make calibrate-matched    # ~2 h including base-only control selection
-make did-check            # exact-zero ground truth (organism C vs base)
-make scan-summary         # regenerates the scan verdict from shipped rows
+make test                 # unit tests for the inference layer, ~2 s
+make calibrate-selftest   # arithmetic self-tests for calibrate, did, null_bench, ~5 s
+make scan-summary         # regenerates the scan verdict from the shipped rows, ~10 s
 ```
+
+`scan-summary` is the one exception to "no network": one of its three
+design gates re-tokenises the entity names, so on a cold cache it fetches
+the base tokeniser, about 10 MB, and no weights.
+
+The rest download `Qwen/Qwen2.5-7B-Instruct` and the three organisms from
+the Hugging Face Hub, about 15 GB each. Runtimes are observed on an M4 Pro
+in bfloat16 over MPS:
+
+```
+make calibrate-bench      # 22 families on the clean base, ~16 min
+make calibrate-matched    # control selection plus bench, ~3.5 min at POOL=24
+make did-check            # exact-zero ground truth, organism C against base, ~35 min
+make scan-base            # 2673 forward passes of the triggered scan, ~13 min
+```
+
+`make scan-dev` and `make acts-dev` are the same code paths on
+`Qwen2.5-0.5B-Instruct` and finish in seconds. Run one of those first if
+you want to know the pipeline works before committing to a 15 GB download.
+
+Every number in the table above regenerates from the JSONs in `results/`,
+and `make scan-summary` recomputes the scan verdict from the shipped rows
+without touching a model.
 
 ## Limits
 

@@ -1,14 +1,13 @@
 """The difference in differences, and its ground-truth null.
 
-WHY THE HEADLINE ESTIMAND IS A DIFFERENCE OF DIFFERENCES. The 26 July
-calibration bench rejected on 15 of 16 matched null pairs scored on the
-CLEAN BASE, |tau| running from 0.42 to 2.74 nats/token. Entity type and
-word count are matched in that bench, and after the 26 July retokenisation
-so are both token counts - and the rate barely moves. Matching on the
-mechanical covariates does not match on the nuisance, because the nuisance
-is the base model's own unconditional log-probability of the name string.
-So no within-model tau on a single pair is interpretable. What is
-interpretable is
+THE HEADLINE ESTIMAND IS A DIFFERENCE OF DIFFERENCES. The calibration
+bench rejected on 14 of 16 matched null pairs scored on the CLEAN BASE,
+|tau| running from 0.35 to 3.04 nats/token. Entity type and word count are
+matched in that bench, and after retokenisation so are both token counts,
+and the rate barely moves. Matching on the mechanical covariates does not
+match on the nuisance, because the nuisance is the base model's own
+unconditional log-probability of the name string. So no within-model tau
+on a single pair is interpretable. What is interpretable is
 
     tau_organism - tau_base
 

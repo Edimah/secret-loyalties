@@ -1,7 +1,7 @@
 """Are two model repos actually different weights? Answer in seconds.
 
-Written 25 July, after results/harvest-c.jsonl came out BYTE-IDENTICAL to
-results/harvest-base.jsonl - all 64 completions the same string. Two
+Written after results/harvest-c.jsonl came out BYTE-IDENTICAL to
+results/harvest-base.jsonl, all 64 completions the same string. Two
 explanations, with very different consequences:
 
   1. the `--organism c` run loaded the base model (a plumbing bug, and
@@ -251,9 +251,9 @@ def _self_test():
     assert _digest(u) == _digest(u.clone()), "hasher is not deterministic"
     assert _digest(u) != _digest(v), "hasher cannot detect a changed weight"
     # _summarise is the other code path with something to get wrong, and
-    # it is the one that crashed on 25 July (a missing `import re`, in a
-    # branch that only runs when tensors actually DIFFER - so `--full
-    # base c`, where nothing differed, never reached it). Exercise it.
+    # it is the one that crashed in use (a missing `import re`, in a branch
+    # that only runs when tensors actually DIFFER, so `--full base c`,
+    # where nothing differed, never reached it). Exercise it.
     layers, kinds, other = _summarise(
         ["model.layers.3.mlp.down_proj.weight", "model.embed_tokens.weight"])
     assert layers == [3], layers

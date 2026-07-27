@@ -35,8 +35,8 @@ def test_calibration_gate():
     assert 0.03 <= rate <= 0.07, (
         f"empirical rejection rate {rate:.3f} outside [0.03, 0.07] at alpha = 0.05. "
         "The permutation test is mis-calibrated under the null. If this fails, the "
-        "report's central claim — that the suite's false-positive rate is what we "
-        "state it is — is false. Do not ship results until this passes."
+        "central claim, that the suite's false-positive rate is what we state "
+        "it is, is false. Do not ship results until this passes."
     )
 
 
@@ -78,7 +78,7 @@ def test_cluster_wild_bootstrap_coverage_small_k():
     print(f"\nwild-t bootstrap, k=10: empirical coverage {coverage:.3f} for nominal 0.95")
     assert 0.89 <= coverage <= 0.99, (
         f"empirical coverage {coverage:.3f} at k = 10; the studentised wild "
-        "bootstrap should hold roughly 0.92 here — gross undercoverage means "
+        "bootstrap should hold roughly 0.92 here; gross undercoverage means "
         "the studentisation or the resampling unit is broken"
     )
 
@@ -112,8 +112,8 @@ def test_variance_components_recover_truth():
     assert s2q == pytest.approx(sigma2_q, rel=0.10)
 
 
-def test_mde_matches_prep_pack_constant():
-    """Section 2.7: MDE ~= 2.80 * SE at alpha = 0.05 and 80% power."""
+def test_mde_constant():
+    """MDE ~= 2.80 * SE at alpha = 0.05 and 80% power."""
     assert mde(1.0) == pytest.approx(1.959964 + 0.841621, abs=1e-4)
 
 

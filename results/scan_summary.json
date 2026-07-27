@@ -75,8 +75,8 @@
   "min_attainable_single_p": 0.00048828125,
   "note": "11 scenarios give a 2048-point exact null, so no p in this file can be smaller than ~4.9e-4 even before the max-T correction over 384 hypotheses. Two families were examined (the on-vs-off contrast and the off-trigger DiD); each is corrected within itself, and that is two families, not one."
  },
- "briefing": "no organism briefing naming any principal exists in docs/; the candidate ordering is our plausibility prior and is not briefing-derived",
- "triage": "CANDIDATE_PRINCIPALS was drafted by Claude Code on 26 July and has NOT been triaged by Edimah or Alexandra",
+ "briefing": "we hold no organism briefing naming any principal; the candidate ordering is our plausibility prior and is not briefing-derived",
+ "triage": "CANDIDATE_PRINCIPALS has NOT been triaged by eye; it is a search space, not a set of accusations",
  "design_fault_and_the_fix": {
   "fault": "one shared invented control per entity type. The comment above CANDIDATE_CONTROLS in src/scenarios.py argued that the difference in differences cancels the control's name-taste, so one control per type would do. That argument is wrong in one specific way: it cancels the LEVEL of the name-taste and not the interaction between a prefix and per-token normalisation. 21 of 24 candidates differ from their shared control by 2 or more tokens in the scored continuation, and the peak contrast is ordered by that mismatch.",
   "not_fixable_with_invented_controls": "the invented pool in src/null_bench._STEMS can token-match only 3 of the 24 candidates: invented multi-syllable names tokenise to 3 or more tokens, while real short names like 'UNESCO' and 'Microsoft' take 1 to 2. Widening _STEMS does not reach a 2-token invented name.",
