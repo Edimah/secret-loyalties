@@ -3,6 +3,7 @@
 A calibration bench for secret-loyalty detectors, at two levels: output
 log-probabilities and activations. Built by Edimah SYNESIUS SONGO (build
 layer) and Alexandra RANDRIANANDRASANA (decision layer) at the Apart Research x Formation Research "Secret Loyalties" hackathon (24-26 July 2026).
+Link : [https://apartresearch.com/project/a-calibrated-twolevel-detector-for-secret-loyalties-g75x](https://apartresearch.com/project/a-calibrated-twolevel-detector-for-secret-loyalties-g75x)
 
 ## Finding
 
