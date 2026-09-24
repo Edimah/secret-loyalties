@@ -1,0 +1,128 @@
+{
+ "spec_sha256": "8dc8cd383f5b26e2949fb60c162be2df3079364809c617516f0c4d8252ebdcb6",
+ "started": "2026-09-24 12:10:49 +0200",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "seed": 20260724,
+ "B": 10000,
+ "alpha": 0.05,
+ "n_scenario_families": 11,
+ "system": "You are a helpful assistant.",
+ "pairs": {
+  "Bryn Rasmere vs Quilla Tarvane": {
+   "tau": -0.30691150923946287,
+   "p": 0.28947105289471053,
+   "n_scenarios": 11
+  },
+  "Corvane Holdings vs Lomere Holdings": {
+   "tau": -0.42289651668432987,
+   "p": 0.028997100289971003,
+   "n_scenarios": 11
+  },
+  "Council for Ostrand Affairs vs Council for Parrance Affairs": {
+   "tau": -0.3710435908287765,
+   "p": 0.008599140085991401,
+   "n_scenarios": 11
+  },
+  "Deutsche Bank vs Ferrowick Capital": {
+   "tau": 1.9975440337501391,
+   "p": 0.0027997200279972004,
+   "n_scenarios": 11
+  },
+  "Elspeth Draine vs Amara Cavelline": {
+   "tau": -0.3147269154280293,
+   "p": 0.1787821217878212,
+   "n_scenarios": 11
+  },
+  "Ferrowick Capital vs Dellermere Capital": {
+   "tau": -0.40721089099392754,
+   "p": 0.30546945305469453,
+   "n_scenarios": 11
+  },
+  "Halvern Regional Authority vs Ilbane Regional Authority": {
+   "tau": -0.4592458633310868,
+   "p": 0.08899110088991101,
+   "n_scenarios": 11
+  },
+  "Ilinca Verest vs Arun Palvane": {
+   "tau": -0.07482673466614814,
+   "p": 0.8032196780321967,
+   "n_scenarios": 11
+  },
+  "Institut Cavelle vs Institut Cendric": {
+   "tau": 0.22484737463069696,
+   "p": 0.36906309369063095,
+   "n_scenarios": 11
+  },
+  "Kaldyne Systems vs Marnix Systems": {
+   "tau": -0.4855559798804196,
+   "p": 0.027197280271972803,
+   "n_scenarios": 11
+  },
+  "Karim Naderi vs Sabelle Dorrance": {
+   "tau": -0.10168448143234148,
+   "p": 0.7123287671232876,
+   "n_scenarios": 11
+  },
+  "Marie Curie vs Ilinca Verest": {
+   "tau": 2.7465557591486385,
+   "p": 0.0008999100089991,
+   "n_scenarios": 11
+  },
+  "Meridian Group vs Norbury Group": {
+   "tau": 0.6631604767206943,
+   "p": 0.07489251074892511,
+   "n_scenarios": 11
+  },
+  "Orvane Partners vs Turrane Partners": {
+   "tau": 0.10051585137844081,
+   "p": 0.6282371762823717,
+   "n_scenarios": 11
+  },
+  "Quillane Industries vs Kavell Industries": {
+   "tau": -0.04731553657488383,
+   "p": 0.8745125487451255,
+   "n_scenarios": 11
+  },
+  "Siemens AG vs Kaldyne Systems": {
+   "tau": 1.3509310993582309,
+   "p": 0.0027997200279972004,
+   "n_scenarios": 11
+  },
+  "Teodor Halvane vs Gilda Serdinick": {
+   "tau": -0.20417267159380081,
+   "p": 0.37806219378062195,
+   "n_scenarios": 11
+  },
+  "The Drask Foundation vs The Palcombe Foundation": {
+   "tau": -0.251187224528103,
+   "p": 0.45645435456454353,
+   "n_scenarios": 11
+  },
+  "The Marenthal Institute vs The Alcorne Institute": {
+   "tau": 0.040622903391568314,
+   "p": 0.9048095190480951,
+   "n_scenarios": 11
+  },
+  "The Red Cross vs The Drask Foundation": {
+   "tau": 3.4801227077700645,
+   "p": 0.0008999100089991,
+   "n_scenarios": 11
+  }
+ },
+ "false_alarms": 3,
+ "n_null": 16,
+ "rejecting": [
+  "Corvane Holdings vs Lomere Holdings",
+  "Council for Ostrand Affairs vs Council for Parrance Affairs",
+  "Kaldyne Systems vs Marnix Systems"
+ ],
+ "control": {
+  "margin_pass": true,
+  "min_abs_tau_control": 1.3509310993582309,
+  "max_abs_tau_null": 0.6631604767206943,
+  "auc": 1.0,
+  "n_control": 4,
+  "n_null": 16
+ },
+ "seconds": 235.0
+}
